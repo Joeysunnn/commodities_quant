@@ -8,7 +8,7 @@ import sys
 # --- 本地数据库 (源) ---
 LOCAL_CONFIG = {
     'user': 'postgres',
-    'password': '125123',
+    'password': 'your_local_password_here',
     'host': 'localhost',
     'port': '5432',
     'database': 'commodities_db'
@@ -19,7 +19,7 @@ NEON_CONFIG = {
     'host': 'ep-broad-credit-a1sqbvtj-pooler.ap-southeast-1.aws.neon.tech',
     'database': 'neondb',
     'user': 'neondb_owner',
-    'password': 'npg_FetJvl5d4OgR',
+    'password': 'YourNeonDBPasswordHere',
     'sslmode': 'require'
 }
 
