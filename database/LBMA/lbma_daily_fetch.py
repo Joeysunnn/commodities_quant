@@ -18,6 +18,7 @@ from datetime import datetime, timedelta
 from io import StringIO, BytesIO
 from bs4 import BeautifulSoup
 import re
+from fake_useragent import UserAgent
 
 # 添加项目根目录到路径
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -38,11 +39,13 @@ def download_lbma_data():
     # LBMA数据页面
     page_url = "https://www.lbma.org.uk/prices-and-data/london-vault-data"
     
+    ua = UserAgent()
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "User-Agent": ua.random,
         "Referer": "https://www.lbma.org.uk/",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
     }
+
 
     print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] 开始下载 LBMA 数据...")
 
