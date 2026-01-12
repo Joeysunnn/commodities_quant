@@ -11,7 +11,7 @@ from datetime import datetime
 import hashlib
 import sys
 import os
-from fake_useragent import UserAgent
+
 # 添加父目录到路径，以便导入 db_utils
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 from db_utils import save_to_database
@@ -31,13 +31,12 @@ def get_slv_key_facts():
     tuple: (ounces, data_date_str, raw_content) 或 (None, None, None)
     """
     # SLV 产品主页 URL
-
     url = "https://www.ishares.com/us/products/239855/ishares-silver-trust-fund/"
-    ua = UserAgent()
+    
     # === 关键点 1：伪装成浏览器 ===
     # iShares 反爬比较严，必须带上完整的 User-Agent
     headers = {
-        'User-Agent': ua.random,
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
         'Accept-Language': 'en-US,en;q=0.9',
     }
