@@ -1,0 +1,664 @@
+2026-01-05 10:24:43,266 - INFO - ✅ COMEX 库存数据 执行成功
+2026-01-05 10:24:43,545 - INFO - ====== WebDriver manager ======
+2026-01-05 10:24:44,405 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-05 10:24:44,680 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-05 10:24:44,961 - INFO - Driver [C:\Users\lenovo\.wdm\drivers\chromedriver\win64\143.0.7499.169\chromedriver-win32/chromedriver.exe] found in cache
+2026-01-05 10:25:05,263 - INFO - ✅ LME 铜库存数据 执行成功
+2026-01-05 10:25:05,925 - INFO - ✅ GLD ETF 持仓数据 执行成功
+2026-01-05 10:25:08,681 - INFO - ✅ LBMA 金银库存数据 执行成功
+2026-01-05 10:25:08,681 - INFO - 每日自动更新完成 - 成功: 4, 失败: 0, 总耗时: 0:00:28.437367
+2026-01-05 10:31:20,238 - INFO - ✅ COMEX 库存数据 执行成功
+2026-01-05 10:31:20,510 - INFO - ====== WebDriver manager ======
+2026-01-05 10:31:21,302 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-05 10:31:21,554 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-05 10:31:21,771 - INFO - Driver [C:\Users\lenovo\.wdm\drivers\chromedriver\win64\143.0.7499.169\chromedriver-win32/chromedriver.exe] found in cache
+2026-01-05 10:31:30,135 - INFO - ✅ LME 铜库存数据 执行成功
+2026-01-05 10:31:30,683 - INFO - ✅ GLD ETF 持仓数据 执行成功
+2026-01-05 10:31:32,794 - INFO - ✅ LBMA 金银库存数据 执行成功
+2026-01-05 10:31:32,795 - INFO - 每日自动更新完成 - 成功: 4, 失败: 0, 总耗时: 0:00:15.492635
+2026-01-05 10:33:38,585 - INFO - ✅ COMEX 库存数据 执行成功
+2026-01-05 10:33:38,846 - INFO - ====== WebDriver manager ======
+2026-01-05 10:33:39,717 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-05 10:33:39,986 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-05 10:33:40,228 - INFO - Driver [C:\Users\lenovo\.wdm\drivers\chromedriver\win64\143.0.7499.169\chromedriver-win32/chromedriver.exe] found in cache
+2026-01-05 10:33:42,968 - ERROR - ❌ LME 铜库存数据 执行失败: Message: session not created: Chrome instance exited. Examine ChromeDriver verbose log to determine the cause.; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0xbc12d3
+	0xbc1314
+	0x9ae6dd
+	0x9e4991
+	0x9dfafa
+	0xa27826
+	0xa27047
+	0xa1b2e6
+	0x9ed321
+	0x9ee1d4
+	0xe15314
+	0xe108cb
+	0xe2d1aa
+	0xbdb1d8
+	0xbe31dd
+	0xbc95d8
+	0xbc9799
+	0xbb3b28
+	0x77a55d49
+	0x77ddd5db
+	0x77ddd561
+Traceback (most recent call last):
+  File "C:\Users\lenovo\Desktop\winter\daily_auto_all.py", line 44, in run_task_safely
+    func()  # 执行任务函数
+    ^^^^^^
+  File "C:\Users\lenovo\Desktop\winter\LME\lme_auto_update.py", line 666, in main
+    updater = LMEAutoUpdater(headless=False)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\winter\LME\lme_auto_update.py", line 71, in __init__
+    self.driver = webdriver.Chrome(service=service, options=chrome_options)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 46, in __init__
+    super().__init__(
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\selenium\webdriver\chromium\webdriver.py", line 67, in __init__
+    super().__init__(command_executor=executor, options=options)
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 257, in __init__
+    self.start_session(capabilities)
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 352, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: session not created: Chrome instance exited. Examine ChromeDriver verbose log to determine the cause.; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0xbc12d3
+	0xbc1314
+	0x9ae6dd
+	0x9e4991
+	0x9dfafa
+	0xa27826
+	0xa27047
+	0xa1b2e6
+	0x9ed321
+	0x9ee1d4
+	0xe15314
+	0xe108cb
+	0xe2d1aa
+	0xbdb1d8
+	0xbe31dd
+	0xbc95d8
+	0xbc9799
+	0xbb3b28
+	0x77a55d49
+	0x77ddd5db
+	0x77ddd561
+
+2026-01-05 10:33:43,579 - INFO - ✅ GLD ETF 持仓数据 执行成功
+2026-01-05 10:33:45,671 - INFO - ✅ LBMA 金银库存数据 执行成功
+2026-01-05 10:33:45,676 - INFO - 每日自动更新完成 - 成功: 3, 失败: 1, 总耗时: 0:00:10.027579
+2026-01-05 11:00:25,762 - INFO - ✅ COMEX 库存数据 执行成功
+2026-01-05 11:00:26,023 - INFO - ====== WebDriver manager ======
+2026-01-05 11:00:26,853 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-05 11:00:27,126 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-05 11:00:27,377 - INFO - Driver [C:\Users\lenovo\.wdm\drivers\chromedriver\win64\143.0.7499.169\chromedriver-win32/chromedriver.exe] found in cache
+2026-01-05 11:01:14,549 - INFO - ✅ LME 铜库存数据 执行成功
+2026-01-05 11:01:15,221 - INFO - ✅ GLD ETF 持仓数据 执行成功
+2026-01-05 11:01:17,347 - INFO - ✅ LBMA 金银库存数据 执行成功
+2026-01-05 11:01:17,350 - INFO - 每日自动更新完成 - 成功: 4, 失败: 0, 总耗时: 0:00:54.393399
+2026-01-05 17:01:41,331 - INFO - NumExpr defaulting to 16 threads.
+2026-01-05 17:01:44,656 - INFO - ✅ COMEX 库存数据 执行成功
+2026-01-05 17:01:44,937 - INFO - ====== WebDriver manager ======
+2026-01-05 17:01:45,900 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-05 17:01:46,412 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-05 17:01:46,934 - INFO - Driver [C:\Users\lenovo\.wdm\drivers\chromedriver\win64\143.0.7499.169\chromedriver-win32/chromedriver.exe] found in cache
+2026-01-05 17:04:30,761 - INFO - ✅ LME 铜库存数据 执行成功
+2026-01-05 17:04:31,890 - INFO - ✅ GLD ETF 持仓数据 执行成功
+2026-01-05 17:04:34,752 - INFO - ✅ LBMA 金银库存数据 执行成功
+2026-01-05 17:04:36,888 - INFO - ✅ 黄金价格数据 执行成功
+2026-01-05 17:04:37,481 - INFO - ✅ 白银价格数据 执行成功
+2026-01-05 17:04:37,771 - INFO - ✅ 铜期货价格数据 执行成功
+2026-01-05 17:04:37,772 - INFO - 每日自动更新完成 - 成功: 7, 失败: 0, 总耗时: 0:02:56.880987
+2026-01-06 09:31:33,007 - INFO - ✅ COMEX 库存数据 执行成功
+2026-01-06 09:31:33,274 - INFO - ====== WebDriver manager ======
+2026-01-06 09:31:34,049 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-06 09:31:34,353 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-06 09:31:34,649 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-06 09:31:35,414 - INFO - WebDriver version 143.0.7499.169 selected
+2026-01-06 09:31:35,430 - INFO - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/143.0.7499.169/win32/chromedriver-win32.zip
+2026-01-06 09:31:35,430 - INFO - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/143.0.7499.169/win32/chromedriver-win32.zip
+2026-01-06 09:31:35,608 - INFO - Driver downloading response is 200
+2026-01-06 09:31:36,172 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-06 09:31:36,542 - INFO - Driver has been saved in cache [C:\Users\lenovo\.wdm\drivers\chromedriver\win64\143.0.7499.169]
+2026-01-06 09:31:39,441 - ERROR - ❌ LME 铜库存数据 执行失败: Message: session not created: Chrome instance exited. Examine ChromeDriver verbose log to determine the cause.; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x3b12d3
+	0x3b1314
+	0x19e6dd
+	0x1d4991
+	0x1cfafa
+	0x217826
+	0x217047
+	0x20b2e6
+	0x1dd321
+	0x1de1d4
+	0x605314
+	0x6008cb
+	0x61d1aa
+	0x3cb1d8
+	0x3d31dd
+	0x3b95d8
+	0x3b9799
+	0x3a3b28
+	0x77a55d49
+	0x77ddd5db
+	0x77ddd561
+	0
+Traceback (most recent call last):
+  File "C:\Users\lenovo\Desktop\winter\daily_auto_all.py", line 47, in run_task_safely
+    func()  # 执行任务函数
+    ^^^^^^
+  File "C:\Users\lenovo\Desktop\winter\LME\lme_auto_update.py", line 694, in main
+    updater = LMEAutoUpdater(headless=False)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\winter\LME\lme_auto_update.py", line 71, in __init__
+    self.driver = webdriver.Chrome(service=service, options=chrome_options)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 46, in __init__
+    super().__init__(
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\selenium\webdriver\chromium\webdriver.py", line 67, in __init__
+    super().__init__(command_executor=executor, options=options)
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 257, in __init__
+    self.start_session(capabilities)
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 352, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: session not created: Chrome instance exited. Examine ChromeDriver verbose log to determine the cause.; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x3b12d3
+	0x3b1314
+	0x19e6dd
+	0x1d4991
+	0x1cfafa
+	0x217826
+	0x217047
+	0x20b2e6
+	0x1dd321
+	0x1de1d4
+	0x605314
+	0x6008cb
+	0x61d1aa
+	0x3cb1d8
+	0x3d31dd
+	0x3b95d8
+	0x3b9799
+	0x3a3b28
+	0x77a55d49
+	0x77ddd5db
+	0x77ddd561
+	0
+
+2026-01-06 09:31:40,033 - INFO - ✅ GLD ETF 持仓数据 执行成功
+2026-01-06 09:31:42,339 - INFO - ✅ LBMA 金银库存数据 执行成功
+2026-01-06 09:31:43,327 - INFO - ✅ 黄金价格数据 执行成功
+2026-01-06 09:31:43,432 - INFO - ✅ 白银价格数据 执行成功
+2026-01-06 09:31:43,555 - INFO - ✅ 铜期货价格数据 执行成功
+2026-01-06 09:31:43,555 - INFO - 每日自动更新完成 - 成功: 6, 失败: 1, 总耗时: 0:01:41.480090
+2026-01-06 09:32:17,450 - INFO - ✅ COMEX 库存数据 执行成功
+2026-01-06 09:32:17,715 - INFO - ====== WebDriver manager ======
+2026-01-06 09:32:18,687 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-06 09:32:18,966 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-06 09:32:19,227 - INFO - Driver [C:\Users\lenovo\.wdm\drivers\chromedriver\win64\143.0.7499.169\chromedriver-win32/chromedriver.exe] found in cache
+2026-01-06 09:32:30,969 - INFO - ✅ LME 铜库存数据 执行成功
+2026-01-06 09:32:31,331 - INFO - ✅ GLD ETF 持仓数据 执行成功
+2026-01-06 09:32:33,911 - INFO - ✅ LBMA 金银库存数据 执行成功
+2026-01-06 09:32:34,875 - ERROR - $GC=F: possibly delisted; no price data found  (1d 2026-01-06 -> 2026-01-06) (Yahoo error = "Data doesn't exist for startDate = 1767675600, endDate = 1767675600")
+2026-01-06 09:32:34,875 - INFO - ✅ 黄金价格数据 执行成功
+2026-01-06 09:32:35,607 - ERROR - $SI=F: possibly delisted; no price data found  (1d 2026-01-06 -> 2026-01-06) (Yahoo error = "Data doesn't exist for startDate = 1767675600, endDate = 1767675600")
+2026-01-06 09:32:35,607 - INFO - ✅ 白银价格数据 执行成功
+2026-01-06 09:32:35,966 - ERROR - $HG=F: possibly delisted; no price data found  (1d 2026-01-06 -> 2026-01-06) (Yahoo error = "Data doesn't exist for startDate = 1767675600, endDate = 1767675600")
+2026-01-06 09:32:35,966 - INFO - ✅ 铜期货价格数据 执行成功
+2026-01-06 09:32:35,966 - INFO - 每日自动更新完成 - 成功: 7, 失败: 0, 总耗时: 0:00:21.446463
+2026-01-07 09:30:06,352 - INFO - ✅ COMEX 库存数据 执行成功
+2026-01-07 09:30:07,292 - INFO - ====== WebDriver manager ======
+2026-01-07 09:30:08,180 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-07 09:30:08,360 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-07 09:30:08,522 - INFO - There is no [win64] chromedriver "143.0.7499.192" for browser google-chrome "143.0.7499" in cache
+2026-01-07 09:30:08,522 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-07 09:30:08,939 - INFO - WebDriver version 143.0.7499.192 selected
+2026-01-07 09:30:08,942 - INFO - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/143.0.7499.192/win32/chromedriver-win32.zip
+2026-01-07 09:30:08,942 - INFO - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/143.0.7499.192/win32/chromedriver-win32.zip
+2026-01-07 09:30:08,996 - INFO - Driver downloading response is 200
+2026-01-07 09:30:09,473 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-07 09:30:09,726 - INFO - Driver has been saved in cache [C:\Users\lenovo\.wdm\drivers\chromedriver\win64\143.0.7499.192]
+2026-01-07 09:30:13,290 - ERROR - ❌ LME 铜库存数据 执行失败: Message: session not created: Chrome instance exited. Examine ChromeDriver verbose log to determine the cause.; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x1281213
+	0x1281254
+	0x106e6dd
+	0x10a4991
+	0x109fafa
+	0x10e7826
+	0x10e7047
+	0x10db2e6
+	0x10ad321
+	0x10ae1d4
+	0x14d5254
+	0x14d080b
+	0x14ed0ea
+	0x129b118
+	0x12a311d
+	0x1289518
+	0x12896d9
+	0x1273a68
+	0x77a55d49
+	0x77ddd5db
+	0x77ddd561
+Traceback (most recent call last):
+  File "C:\Users\lenovo\Desktop\winter\daily_auto_all.py", line 47, in run_task_safely
+    func()  # 执行任务函数
+    ^^^^^^
+  File "C:\Users\lenovo\Desktop\winter\LME\lme_auto_update.py", line 694, in main
+    updater = LMEAutoUpdater(headless=False)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\winter\LME\lme_auto_update.py", line 71, in __init__
+    self.driver = webdriver.Chrome(service=service, options=chrome_options)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 46, in __init__
+    super().__init__(
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\selenium\webdriver\chromium\webdriver.py", line 67, in __init__
+    super().__init__(command_executor=executor, options=options)
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 257, in __init__
+    self.start_session(capabilities)
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 352, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: session not created: Chrome instance exited. Examine ChromeDriver verbose log to determine the cause.; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x1281213
+	0x1281254
+	0x106e6dd
+	0x10a4991
+	0x109fafa
+	0x10e7826
+	0x10e7047
+	0x10db2e6
+	0x10ad321
+	0x10ae1d4
+	0x14d5254
+	0x14d080b
+	0x14ed0ea
+	0x129b118
+	0x12a311d
+	0x1289518
+	0x12896d9
+	0x1273a68
+	0x77a55d49
+	0x77ddd5db
+	0x77ddd561
+
+2026-01-07 09:30:13,529 - INFO - ✅ GLD ETF 持仓数据 执行成功
+2026-01-07 09:30:16,156 - INFO - ✅ LBMA 金银库存数据 执行成功
+2026-01-07 09:30:17,669 - INFO - ✅ 黄金价格数据 执行成功
+2026-01-07 09:30:17,802 - INFO - ✅ 白银价格数据 执行成功
+2026-01-07 09:30:17,887 - INFO - ✅ 铜期货价格数据 执行成功
+2026-01-07 09:30:17,888 - INFO - 每日自动更新完成 - 成功: 6, 失败: 1, 总耗时: 0:00:15.774497
+2026-01-07 14:35:39,431 - INFO - ✅ COMEX 库存数据 执行成功
+2026-01-07 14:35:39,744 - INFO - ====== WebDriver manager ======
+2026-01-07 14:35:40,655 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-07 14:35:42,502 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-07 14:35:43,350 - INFO - Driver [C:\Users\lenovo\.wdm\drivers\chromedriver\win64\143.0.7499.192\chromedriver-win32/chromedriver.exe] found in cache
+2026-01-07 14:36:46,470 - INFO - ✅ LME 铜库存数据 执行成功
+2026-01-07 14:36:47,724 - INFO - ✅ GLD ETF 持仓数据 执行成功
+2026-01-07 14:36:50,468 - INFO - ✅ SLV ETF 持仓数据 执行成功
+2026-01-07 14:36:53,661 - INFO - ✅ LBMA 金银库存数据 执行成功
+2026-01-07 14:36:55,090 - INFO - ✅ 黄金价格数据 执行成功
+2026-01-07 14:36:55,174 - INFO - ✅ 白银价格数据 执行成功
+2026-01-07 14:36:55,260 - INFO - ✅ 铜期货价格数据 执行成功
+2026-01-07 14:36:55,260 - INFO - 每日自动更新完成 - 成功: 8, 失败: 0, 总耗时: 0:01:21.939765
+2026-01-07 17:18:49,722 - INFO - ✅ COMEX 库存数据 执行成功
+2026-01-07 17:18:50,120 - INFO - ====== WebDriver manager ======
+2026-01-07 17:18:51,072 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-07 17:18:51,971 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-07 17:18:52,803 - INFO - Driver [C:\Users\lenovo\.wdm\drivers\chromedriver\win64\143.0.7499.192\chromedriver-win32/chromedriver.exe] found in cache
+2026-01-07 17:20:34,959 - INFO - ✅ LME 铜库存数据 执行成功
+2026-01-07 17:20:36,120 - INFO - ✅ GLD ETF 持仓数据 执行成功
+2026-01-07 17:20:38,925 - INFO - ✅ SLV ETF 持仓数据 执行成功
+2026-01-07 17:20:42,013 - INFO - ✅ LBMA 金银库存数据 执行成功
+2026-01-07 17:20:43,501 - INFO - ✅ 黄金价格数据 执行成功
+2026-01-07 17:20:43,786 - INFO - ✅ 白银价格数据 执行成功
+2026-01-07 17:20:44,068 - INFO - ✅ 铜期货价格数据 执行成功
+2026-01-07 17:20:44,068 - INFO - 每日自动更新完成 - 成功: 8, 失败: 0, 总耗时: 0:02:01.585150
+2026-01-07 17:34:09,932 - ERROR - [FAIL] COMEX 库存数据 执行失败: 'gbk' codec can't encode character '\u2713' in position 0: illegal multibyte sequence
+Traceback (most recent call last):
+  File "D:\UserFiles\Desktop\commodities\database\daily_auto_all.py", line 48, in run_task_safely
+    func()  # 执行任务函数
+    ^^^^^^
+  File "D:\UserFiles\Desktop\commodities\database\comex\daily_fetch.py", line 363, in main
+    db.save(clean_df)
+  File "D:\UserFiles\Desktop\commodities\database\db_utils.py", line 267, in save
+    print(f"✓ 已保存 {rows} 行数据到 {schema}.{table_name}")
+UnicodeEncodeError: 'gbk' codec can't encode character '\u2713' in position 0: illegal multibyte sequence
+2026-01-07 17:34:10,209 - INFO - ====== WebDriver manager ======
+2026-01-07 17:34:11,124 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-07 17:34:12,544 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-07 17:34:13,354 - INFO - Driver [C:\Users\lenovo\.wdm\drivers\chromedriver\win64\143.0.7499.192\chromedriver-win32/chromedriver.exe] found in cache
+2026-01-07 17:34:37,086 - ERROR - [FAIL] LME 铜库存数据 执行失败: 'gbk' codec can't encode character '\u2713' in position 4: illegal multibyte sequence
+Traceback (most recent call last):
+  File "D:\UserFiles\Desktop\commodities\database\daily_auto_all.py", line 48, in run_task_safely
+    func()  # 执行任务函数
+    ^^^^^^
+  File "D:\UserFiles\Desktop\commodities\database\LME\lme_auto_update.py", line 860, in main
+    result = updater.run()
+             ^^^^^^^^^^^^^
+  File "D:\UserFiles\Desktop\commodities\database\LME\lme_auto_update.py", line 776, in run
+    recent_reports = self.fetch_recent_reports(days=10)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\UserFiles\Desktop\commodities\database\LME\lme_auto_update.py", line 437, in fetch_recent_reports
+    print(f"    ✓ {report['title']}")
+UnicodeEncodeError: 'gbk' codec can't encode character '\u2713' in position 4: illegal multibyte sequence
+2026-01-07 17:34:38,117 - ERROR - [FAIL] GLD ETF 持仓数据 执行失败: 'gbk' codec can't encode character '\u274c' in position 0: illegal multibyte sequence
+Traceback (most recent call last):
+  File "D:\UserFiles\Desktop\commodities\database\GLD\daily_fetch_gld.py", line 48, in download_gld_data
+    print(f"✅ 下载成功！数据大小: {len(response.content)} 字节")
+UnicodeEncodeError: 'gbk' codec can't encode character '\u2705' in position 0: illegal multibyte sequence
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\UserFiles\Desktop\commodities\database\daily_auto_all.py", line 48, in run_task_safely
+    func()  # 执行任务函数
+    ^^^^^^
+  File "D:\UserFiles\Desktop\commodities\database\GLD\daily_fetch_gld.py", line 184, in main
+    raw_data = download_gld_data()
+               ^^^^^^^^^^^^^^^^^^^
+  File "D:\UserFiles\Desktop\commodities\database\GLD\daily_fetch_gld.py", line 52, in download_gld_data
+    print(f"❌ 下载失败: {e}")
+UnicodeEncodeError: 'gbk' codec can't encode character '\u274c' in position 0: illegal multibyte sequence
+2026-01-07 17:34:41,007 - ERROR - [FAIL] SLV ETF 持仓数据 执行失败: 'gbk' codec can't encode character '\u274c' in position 0: illegal multibyte sequence
+Traceback (most recent call last):
+  File "D:\UserFiles\Desktop\commodities\database\rawdata\SLV\daily_slv.py", line 83, in get_slv_key_facts
+    print(f"✅ 抓取成功! SLV 库存: {ounces:,.2f} 盎司 (网页日期: {data_date_str})")
+UnicodeEncodeError: 'gbk' codec can't encode character '\u2705' in position 0: illegal multibyte sequence
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\UserFiles\Desktop\commodities\database\daily_auto_all.py", line 48, in run_task_safely
+    func()  # 执行任务函数
+    ^^^^^^
+  File "D:\UserFiles\Desktop\commodities\database\rawdata\SLV\daily_slv.py", line 197, in daily_update
+    ounces, data_date_str, raw_content = get_slv_key_facts()
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "D:\UserFiles\Desktop\commodities\database\rawdata\SLV\daily_slv.py", line 90, in get_slv_key_facts
+    print(f"❌ 爬虫出错: {e}")
+UnicodeEncodeError: 'gbk' codec can't encode character '\u274c' in position 0: illegal multibyte sequence
+2026-01-07 17:34:43,710 - ERROR - [FAIL] LBMA 金银库存数据 执行失败: 'gbk' codec can't encode character '\u274c' in position 0: illegal multibyte sequence
+Traceback (most recent call last):
+  File "D:\UserFiles\Desktop\commodities\database\LBMA\lbma_daily_fetch.py", line 84, in download_lbma_data
+    print(f"✅ 下载成功！数据大小: {len(excel_response.content)} 字节")
+UnicodeEncodeError: 'gbk' codec can't encode character '\u2705' in position 0: illegal multibyte sequence
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\UserFiles\Desktop\commodities\database\daily_auto_all.py", line 48, in run_task_safely
+    func()  # 执行任务函数
+    ^^^^^^
+  File "D:\UserFiles\Desktop\commodities\database\LBMA\lbma_daily_fetch.py", line 266, in main
+    raw_data = download_lbma_data()
+               ^^^^^^^^^^^^^^^^^^^^
+  File "D:\UserFiles\Desktop\commodities\database\LBMA\lbma_daily_fetch.py", line 88, in download_lbma_data
+    print(f"❌ 下载失败: {e}")
+UnicodeEncodeError: 'gbk' codec can't encode character '\u274c' in position 0: illegal multibyte sequence
+2026-01-07 17:34:44,331 - INFO - [OK] 黄金价格数据 执行成功
+2026-01-07 17:34:44,411 - INFO - [OK] 白银价格数据 执行成功
+2026-01-07 17:34:44,491 - INFO - [OK] 铜期货价格数据 执行成功
+2026-01-07 17:34:44,491 - INFO - 每日自动更新完成 - 成功: 3, 失败: 5, 总耗时: 0:00:40.552122
+2026-01-07 17:41:10,459 - INFO - [OK] COMEX 库存数据 执行成功
+2026-01-07 17:41:10,745 - INFO - ====== WebDriver manager ======
+2026-01-07 17:41:11,618 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-07 17:41:12,433 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-07 17:41:13,268 - INFO - Driver [C:\Users\lenovo\.wdm\drivers\chromedriver\win64\143.0.7499.192\chromedriver-win32/chromedriver.exe] found in cache
+2026-01-07 17:42:35,381 - INFO - [OK] LME 铜库存数据 执行成功
+2026-01-07 17:42:36,720 - INFO - [OK] GLD ETF 持仓数据 执行成功
+2026-01-07 17:42:39,345 - INFO - [OK] SLV ETF 持仓数据 执行成功
+2026-01-07 17:42:42,638 - INFO - [OK] LBMA 金银库存数据 执行成功
+2026-01-07 17:42:43,275 - INFO - [OK] 黄金价格数据 执行成功
+2026-01-07 17:42:43,351 - INFO - [OK] 白银价格数据 执行成功
+2026-01-07 17:42:43,419 - INFO - [OK] 铜期货价格数据 执行成功
+2026-01-07 17:42:43,419 - INFO - 每日自动更新完成 - 成功: 8, 失败: 0, 总耗时: 0:01:38.987021
+2026-01-08 09:50:18,379 - INFO - [OK] COMEX 库存数据 执行成功
+2026-01-08 09:50:18,940 - INFO - ====== WebDriver manager ======
+2026-01-08 09:50:20,247 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-08 09:50:21,177 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-08 09:50:22,017 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-08 09:50:24,103 - INFO - WebDriver version 143.0.7499.192 selected
+2026-01-08 09:50:24,110 - INFO - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/143.0.7499.192/win32/chromedriver-win32.zip
+2026-01-08 09:50:24,110 - INFO - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/143.0.7499.192/win32/chromedriver-win32.zip
+2026-01-08 09:50:24,504 - INFO - Driver downloading response is 200
+2026-01-08 09:50:25,308 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-08 09:50:26,403 - INFO - Driver has been saved in cache [C:\Users\lenovo\.wdm\drivers\chromedriver\win64\143.0.7499.192]
+2026-01-08 09:51:57,496 - INFO - [OK] LME 铜库存数据 执行成功
+2026-01-08 09:51:58,702 - INFO - [OK] GLD ETF 持仓数据 执行成功
+2026-01-08 09:52:01,496 - INFO - [OK] SLV ETF 持仓数据 执行成功
+2026-01-08 09:52:04,922 - INFO - [OK] LBMA 金银库存数据 执行成功
+2026-01-08 09:52:07,484 - INFO - [OK] 黄金价格数据 执行成功
+2026-01-08 09:52:07,869 - INFO - [OK] 白银价格数据 执行成功
+2026-01-08 09:52:08,232 - INFO - [OK] 铜期货价格数据 执行成功
+2026-01-08 09:52:08,232 - INFO - 每日自动更新完成 - 成功: 8, 失败: 0, 总耗时: 0:01:58.520064
+2026-01-08 11:29:56,338 - INFO - [OK] COMEX 库存数据 执行成功
+2026-01-08 11:29:56,607 - INFO - ====== WebDriver manager ======
+2026-01-08 11:29:57,486 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-08 11:29:58,311 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-08 11:29:59,263 - INFO - Driver [C:\Users\lenovo\.wdm\drivers\chromedriver\win64\143.0.7499.192\chromedriver-win32/chromedriver.exe] found in cache
+2026-01-08 11:30:07,234 - INFO - ====== WebDriver manager ======
+2026-01-08 11:30:08,170 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-08 11:30:09,040 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-08 11:30:09,864 - INFO - Driver [C:\Users\lenovo\.wdm\drivers\chromedriver\win64\143.0.7499.192\chromedriver-win32/chromedriver.exe] found in cache
+2026-01-08 11:30:17,634 - INFO - ====== WebDriver manager ======
+2026-01-08 11:30:18,650 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-08 11:30:19,507 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-08 11:30:20,349 - INFO - Driver [C:\Users\lenovo\.wdm\drivers\chromedriver\win64\143.0.7499.192\chromedriver-win32/chromedriver.exe] found in cache
+2026-01-08 11:30:23,124 - ERROR - [FAIL] LME 铜库存数据 执行失败: 无法启动Chrome浏览器，已重试3次
+Traceback (most recent call last):
+  File "D:\UserFiles\Desktop\commodities\database\LME\lme_auto_update.py", line 100, in _init_browser
+    self.driver = webdriver.Chrome(service=service, options=chrome_options)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 46, in __init__
+    super().__init__(
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\selenium\webdriver\chromium\webdriver.py", line 67, in __init__
+    super().__init__(command_executor=executor, options=options)
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 257, in __init__
+    self.start_session(capabilities)
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 352, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 432, in execute
+    self.error_handler.check_response(response)
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: session not created: Chrome instance exited. Examine ChromeDriver verbose log to determine the cause.; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x12e1213
+	0x12e1254
+	0x10ce6dd
+	0x1104991
+	0x10ffafa
+	0x1147826
+	0x1147047
+	0x113b2e6
+	0x110d321
+	0x110e1d4
+	0x1535254
+	0x153080b
+	0x154d0ea
+	0x12fb118
+	0x130311d
+	0x12e9518
+	0x12e96d9
+	0x12d3a68
+	0x77a55d49
+	0x77ddd5db
+	0x77ddd561
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\UserFiles\Desktop\commodities\database\daily_auto_all.py", line 48, in run_task_safely
+    func()  # 执行任务函数
+    ^^^^^^
+  File "D:\UserFiles\Desktop\commodities\database\LME\lme_auto_update.py", line 859, in main
+    updater = LMEAutoUpdater(headless=False)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\UserFiles\Desktop\commodities\database\LME\lme_auto_update.py", line 52, in __init__
+    self._init_browser()
+  File "D:\UserFiles\Desktop\commodities\database\LME\lme_auto_update.py", line 129, in _init_browser
+    raise Exception(f"无法启动Chrome浏览器，已重试{retry_count}次")
+Exception: 无法启动Chrome浏览器，已重试3次
+2026-01-08 11:30:24,309 - INFO - [OK] GLD ETF 持仓数据 执行成功
+2026-01-08 11:30:27,263 - INFO - [OK] SLV ETF 持仓数据 执行成功
+2026-01-08 11:30:30,483 - INFO - [OK] LBMA 金银库存数据 执行成功
+2026-01-08 11:30:31,766 - ERROR - $GC=F: possibly delisted; no price data found  (1d 2026-01-08 -> 2026-01-08) (Yahoo error = "Data doesn't exist for startDate = 1767848400, endDate = 1767848400")
+2026-01-08 11:30:31,773 - INFO - [OK] 黄金价格数据 执行成功
+2026-01-08 11:30:32,163 - ERROR - $SI=F: possibly delisted; no price data found  (1d 2026-01-08 -> 2026-01-08) (Yahoo error = "Data doesn't exist for startDate = 1767848400, endDate = 1767848400")
+2026-01-08 11:30:32,173 - INFO - [OK] 白银价格数据 执行成功
+2026-01-08 11:30:32,513 - ERROR - $HG=F: possibly delisted; no price data found  (1d 2026-01-08 -> 2026-01-08) (Yahoo error = "Data doesn't exist for startDate = 1767848400, endDate = 1767848400")
+2026-01-08 11:30:32,513 - INFO - [OK] 铜期货价格数据 执行成功
+2026-01-08 11:30:32,513 - INFO - 每日自动更新完成 - 成功: 7, 失败: 1, 总耗时: 0:00:42.482246
+2026-01-08 11:31:09,433 - INFO - [OK] COMEX 库存数据 执行成功
+2026-01-08 11:31:09,707 - INFO - ====== WebDriver manager ======
+2026-01-08 11:31:10,585 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-08 11:31:11,429 - INFO - Get LATEST chromedriver version for google-chrome
+2026-01-08 11:31:12,272 - INFO - Driver [C:\Users\lenovo\.wdm\drivers\chromedriver\win64\143.0.7499.192\chromedriver-win32/chromedriver.exe] found in cache
+2026-01-08 11:32:22,807 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000020306312D10>: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。')': /session/d996e513ada2c47285e60bc4f05bdfe5/element
+2026-01-08 11:32:26,875 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000020306313810>: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。')': /session/d996e513ada2c47285e60bc4f05bdfe5/element
+2026-01-08 11:32:30,955 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000203063183D0>: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。')': /session/d996e513ada2c47285e60bc4f05bdfe5/element
+2026-01-08 11:36:57,536 - INFO - [OK] COMEX 库存数据 执行成功
+2026-01-08 11:36:58,783 - INFO - [OK] GLD ETF 持仓数据 执行成功
+2026-01-08 11:37:01,860 - INFO - [OK] SLV ETF 持仓数据 执行成功
+2026-01-08 11:37:04,758 - INFO - [OK] LBMA 金银库存数据 执行成功
+2026-01-08 11:37:05,808 - ERROR - $GC=F: possibly delisted; no price data found  (1d 2026-01-08 -> 2026-01-08) (Yahoo error = "Data doesn't exist for startDate = 1767848400, endDate = 1767848400")
+2026-01-08 11:37:05,808 - INFO - [OK] 黄金价格数据 执行成功
+2026-01-08 11:37:06,205 - ERROR - $SI=F: possibly delisted; no price data found  (1d 2026-01-08 -> 2026-01-08) (Yahoo error = "Data doesn't exist for startDate = 1767848400, endDate = 1767848400")
+2026-01-08 11:37:06,206 - INFO - [OK] 白银价格数据 执行成功
+2026-01-08 11:37:07,340 - ERROR - $HG=F: possibly delisted; no price data found  (1d 2026-01-08 -> 2026-01-08) (Yahoo error = "Data doesn't exist for startDate = 1767848400, endDate = 1767848400")
+2026-01-08 11:37:07,342 - INFO - [OK] 铜期货价格数据 执行成功
+2026-01-08 11:37:07,343 - INFO - 每日自动更新完成 - 成功: 7, 失败: 0, 总耗时: 0:00:16.110909
+2026-01-09 09:30:07,554 - INFO - [OK] COMEX 库存数据 执行成功
+2026-01-09 09:30:08,484 - INFO - [OK] GLD ETF 持仓数据 执行成功
+2026-01-09 09:30:09,993 - INFO - [OK] SLV ETF 持仓数据 执行成功
+2026-01-09 09:30:13,348 - INFO - [OK] LBMA 金银库存数据 执行成功
+2026-01-09 09:30:14,493 - INFO - [OK] 黄金价格数据 执行成功
+2026-01-09 09:30:14,688 - INFO - [OK] 白银价格数据 执行成功
+2026-01-09 09:30:14,891 - INFO - [OK] 铜期货价格数据 执行成功
+2026-01-09 09:30:14,909 - ERROR - 无法导入 SHEX 模块: No module named 'grab_api'
+2026-01-09 09:30:14,917 - INFO - 每日自动更新完成 - 成功: 7, 失败: 1, 总耗时: 0:00:11.838373
+2026-01-12 09:30:22,467 - ERROR - [FAIL] COMEX 库存数据 执行失败: invalid literal for int() with base 10: 'None'
+Traceback (most recent call last):
+  File "D:\UserFiles\Desktop\commodities\database\daily_auto_all.py", line 48, in run_task_safely
+    func()  # 执行任务函数
+    ^^^^^^
+  File "D:\UserFiles\Desktop\commodities\database\comex\daily_fetch.py", line 362, in main
+    with DatabaseSession("comex_daily_fetch.py") as db:
+  File "D:\UserFiles\Desktop\commodities\database\db_utils.py", line 232, in __enter__
+    self.run_id = start_load_run(self.script_name)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\UserFiles\Desktop\commodities\database\db_utils.py", line 80, in start_load_run
+    engine = get_engine()
+             ^^^^^^^^^^^^
+  File "D:\UserFiles\Desktop\commodities\database\db_utils.py", line 61, in get_engine
+    get_engine._engine = create_engine(get_db_url())
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 2, in create_engine
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\sqlalchemy\util\deprecations.py", line 281, in warned
+    return fn(*args, **kwargs)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\sqlalchemy\engine\create.py", line 564, in create_engine
+    u = _url.make_url(url)
+        ^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\sqlalchemy\engine\url.py", line 856, in make_url
+    return _parse_url(name_or_url)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\sqlalchemy\engine\url.py", line 917, in _parse_url
+    components["port"] = int(components["port"])
+                         ^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'None'
+2026-01-12 09:30:23,622 - ERROR - [FAIL] GLD ETF 持仓数据 执行失败: invalid literal for int() with base 10: 'None'
+Traceback (most recent call last):
+  File "D:\UserFiles\Desktop\commodities\database\daily_auto_all.py", line 48, in run_task_safely
+    func()  # 执行任务函数
+    ^^^^^^
+  File "D:\UserFiles\Desktop\commodities\database\GLD\daily_fetch_gld.py", line 225, in main
+    with DatabaseSession("daily_fetch_gld.py") as db:
+  File "D:\UserFiles\Desktop\commodities\database\db_utils.py", line 232, in __enter__
+    self.run_id = start_load_run(self.script_name)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\UserFiles\Desktop\commodities\database\db_utils.py", line 80, in start_load_run
+    engine = get_engine()
+             ^^^^^^^^^^^^
+  File "D:\UserFiles\Desktop\commodities\database\db_utils.py", line 61, in get_engine
+    get_engine._engine = create_engine(get_db_url())
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 2, in create_engine
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\sqlalchemy\util\deprecations.py", line 281, in warned
+    return fn(*args, **kwargs)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\sqlalchemy\engine\create.py", line 564, in create_engine
+    u = _url.make_url(url)
+        ^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\sqlalchemy\engine\url.py", line 856, in make_url
+    return _parse_url(name_or_url)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\sqlalchemy\engine\url.py", line 917, in _parse_url
+    components["port"] = int(components["port"])
+                         ^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'None'
+2026-01-12 09:30:26,035 - INFO - [OK] SLV ETF 持仓数据 执行成功
+2026-01-12 09:30:31,977 - ERROR - [FAIL] LBMA 金银库存数据 执行失败: invalid literal for int() with base 10: 'None'
+Traceback (most recent call last):
+  File "D:\UserFiles\Desktop\commodities\database\daily_auto_all.py", line 48, in run_task_safely
+    func()  # 执行任务函数
+    ^^^^^^
+  File "D:\UserFiles\Desktop\commodities\database\LBMA\lbma_daily_fetch.py", line 300, in main
+    with DatabaseSession("lbma_daily_fetch.py") as db:
+  File "D:\UserFiles\Desktop\commodities\database\db_utils.py", line 232, in __enter__
+    self.run_id = start_load_run(self.script_name)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\UserFiles\Desktop\commodities\database\db_utils.py", line 80, in start_load_run
+    engine = get_engine()
+             ^^^^^^^^^^^^
+  File "D:\UserFiles\Desktop\commodities\database\db_utils.py", line 61, in get_engine
+    get_engine._engine = create_engine(get_db_url())
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 2, in create_engine
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\sqlalchemy\util\deprecations.py", line 281, in warned
+    return fn(*args, **kwargs)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\sqlalchemy\engine\create.py", line 564, in create_engine
+    u = _url.make_url(url)
+        ^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\sqlalchemy\engine\url.py", line 856, in make_url
+    return _parse_url(name_or_url)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\envs\stat3612\Lib\site-packages\sqlalchemy\engine\url.py", line 917, in _parse_url
+    components["port"] = int(components["port"])
+                         ^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'None'
+2026-01-12 09:30:46,282 - INFO - [OK] 黄金价格数据 执行成功
+2026-01-12 09:30:46,504 - INFO - [OK] 白银价格数据 执行成功
+2026-01-12 09:30:46,727 - INFO - [OK] 铜期货价格数据 执行成功
+2026-01-12 09:30:46,775 - INFO - 每日自动更新完成 - 成功: 4, 失败: 3, 总耗时: 0:00:44.146242

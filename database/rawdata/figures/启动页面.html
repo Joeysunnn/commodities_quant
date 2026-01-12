@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metal Market Analytics Dashboard - Launcher</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 50px;
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 40px;
+        }
+        
+        .dashboard-icon {
+            font-size: 80px;
+            margin-bottom: 30px;
+        }
+        
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            padding: 18px 40px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background: #e0e0e0;
+            transform: translateY(-2px);
+        }
+        
+        .info-box {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-top: 30px;
+            text-align: left;
+            border-radius: 5px;
+        }
+        
+        .info-box h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .info-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .info-box li {
+            padding: 8px 0;
+            color: #555;
+        }
+        
+        .info-box li:before {
+            content: "✓ ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #ffc107;
+            color: #333;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 20px;
+        }
+        
+        .status.ready {
+            background: #28a745;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard-icon">📊</div>
+        <h1>Metal Market Analytics</h1>
+        <p class="subtitle">贵金属市场分析仪表盘</p>
+        
+        <div class="btn-container">
+            <a href="http://localhost:8501" target="_blank" class="btn btn-primary" id="openDashboard">
+                🚀 打开仪表盘
+            </a>
+            <button onclick="startServer()" class="btn btn-secondary" id="startBtn">
+                ▶️ 启动服务器
+            </button>
+            <button onclick="openBatFile()" class="btn btn-secondary" style="display:none;" id="batBtn">
+                ▶️ 运行启动脚本
+            </button>
+        </div>
+        
+        <div class="status" id="status">检查服务器状态...</div>
+        
+        <div class="info-box">
+            <h3>📝 使用说明</h3>
+            <ul>
+                <li>首次使用：双击 "一键启动.bat" 或 "启动仪表盘.bat" 启动服务器</li>
+                <li>服务器启动后：点击上方 "打开仪表盘" 按钮</li>
+                <li>服务器地址：localhost:8501</li>
+                <li>支持的金属：GOLD, SILVER, COPPER</li>
+                <li>停止服务：关闭启动窗口或按Ctrl+C</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        // 检查服务器状态
+        function checkServerStatus() {
+            fetch('http://localhost:8501')
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById('status').textContent = '✅ 服务器运行中';
+                        document.getElementById('status').classList.add('ready');
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('status').textContent = '⚠️ 服务器未启动';
+                });
+        }
+        
+        // 启动服务器
+        function startServer() {
+            const currentPath = window.location.pathname;
+            const folderPath = currentPath.substring(0, currentPath.lastIndexOf('/'));
+            
+            // 尝试打开.bat文件
+            const batPath = 'file:///' + window.location.pathname.replace('启动页面.html', '启动仪表盘.bat');
+            
+            // 显示详细说明
+            const message = '要启动服务器，请按以下步骤操作：\n\n' +
+                          '方法1（推荐）：\n' +
+                          '1. 在文件夹中找到 "启动仪表盘.bat"\n' +
+                          '2. 双击运行该文件\n' +
+                          '3. 等待服务器启动（约5-10秒）\n' +
+                          '4. 点击"打开仪表盘"按钮\n\n' +
+                          '方法2（命令行）：\n' +
+                          '1. 打开PowerShell或命令提示符\n' +
+                          '2. 切换到此文件夹\n' +
+                          '3. 运行：D:\\anaconda3\\envs\\stat3612\\python.exe -m streamlit run web.py\n\n' +
+                          '方法3（PowerShell脚本）：\n' +
+                          '右键 "启动仪表盘.ps1" -> 使用PowerShell运行';
+            
+            alert(message);
+            
+            // 尝试打开bat文件所在的文件夹
+            try {
+                window.open(batPath.replace('启动仪表盘.bat', ''), '_blank');
+            } catch (e) {
+                console.log('无法自动打开文件夹');
+            }
+        }
+        
+        // 打开bat文件（备用方法）
+        function openBatFile() {
+            const batPath = window.location.pathname.replace('启动页面.html', '启动仪表盘.bat');
+            window.location.href = 'file:///' + batPath;
+        }
+        
+        // 页面加载时检查服务器状态
+        checkServerStatus();
+        
+        // 每5秒检查一次服务器状态
+        setInterval(checkServerStatus, 5000);
+    </script>
+</body>
+</html>
