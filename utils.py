@@ -1087,16 +1087,22 @@ def plot_squeeze_divergence(
     layout.update({
         'xaxis': {'title': '日期', 'showgrid': True, 'gridcolor': THEME['colors']['grid']},
         'yaxis': {
-            'title': f'{y1_name} ({y1_unit})',
+            # ✅ 修改点 1：title 变成字典，包含 text 和 font
+            'title': {
+                'text': f'{y1_name} ({y1_unit})',
+                'font': {'color': THEME['colors']['success']}
+            },
             'showgrid': True,
             'gridcolor': THEME['colors']['grid'],
-            'titlefont': {'color': THEME['colors']['success']},
             'tickfont': {'color': THEME['colors']['success']}
         },
         'yaxis2': {
-            'title': f'{y2_name} ({y2_unit})',
+            # ✅ 修改点 2：title 变成字典，包含 text 和 font
+            'title': {
+                'text': f'{y2_name} ({y2_unit})',
+                'font': {'color': THEME['colors']['danger']}
+            },
             'showgrid': False,
-            'titlefont': {'color': THEME['colors']['danger']},
             'tickfont': {'color': THEME['colors']['danger']}
         },
     })
