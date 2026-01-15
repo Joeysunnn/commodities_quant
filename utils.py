@@ -660,9 +660,9 @@ def plot_combo_ratio_price(
     # 布局
     layout = get_base_layout(title, height)
     layout.update({
-        'xaxis': {'title': '日期', 'showgrid': True, 'gridcolor': THEME['colors']['grid']},
-        'yaxis': {'title': ratio_name, 'tickformat': '.0%', 'showgrid': True, 'gridcolor': THEME['colors']['grid']},
-        'yaxis2': {'title': '价格 (USD)', 'showgrid': False},
+        'xaxis': {'title': {'text': '日期', 'font': THEME['font']}, 'showgrid': True, 'gridcolor': THEME['colors']['grid']},
+        'yaxis': {'title': {'text': ratio_name, 'font': THEME['font']}, 'tickformat': '.0%', 'showgrid': True, 'gridcolor': THEME['colors']['grid']},
+        'yaxis2': {'title': {'text': '价格 (USD)', 'font': THEME['font']}, 'showgrid': False},
     })
     fig.update_layout(**layout)
     
@@ -718,8 +718,8 @@ def plot_flow_bar(
     # 布局
     layout = get_base_layout(title, height)
     layout.update({
-        'xaxis': {'title': '日期', 'showgrid': True, 'gridcolor': THEME['colors']['grid']},
-        'yaxis': {'title': f'流量 ({unit})', 'showgrid': True, 'gridcolor': THEME['colors']['grid']},
+        'xaxis': {'title': {'text': '日期', 'font': THEME['font']}, 'showgrid': True, 'gridcolor': THEME['colors']['grid']},
+        'yaxis': {'title': {'text': f'流量 ({unit})', 'font': THEME['font']}, 'showgrid': True, 'gridcolor': THEME['colors']['grid']},
         'barmode': 'relative',
     })
     fig.update_layout(**layout)
@@ -793,8 +793,8 @@ def plot_stacked_area_structure(
     # 布局
     layout = get_base_layout(title, height)
     layout.update({
-        'xaxis': {'title': '日期', 'showgrid': True, 'gridcolor': THEME['colors']['grid']},
-        'yaxis': {'title': f'库存量 ({unit})', 'showgrid': True, 'gridcolor': THEME['colors']['grid']},
+        'xaxis': {'title': {'text': '日期', 'font': THEME['font']}, 'showgrid': True, 'gridcolor': THEME['colors']['grid']},
+        'yaxis': {'title': {'text': f'库存量 ({unit})', 'font': THEME['font']}, 'showgrid': True, 'gridcolor': THEME['colors']['grid']},
     })
     fig.update_layout(**layout)
     
@@ -873,9 +873,9 @@ def plot_dual_axis_lines(
     # 布局
     layout = get_base_layout(title, height)
     layout.update({
-        'xaxis': {'title': '日期', 'showgrid': True, 'gridcolor': THEME['colors']['grid']},
-        'yaxis': {'title': f'{y1_name} ({y1_unit})', 'showgrid': True, 'gridcolor': THEME['colors']['grid']},
-        'yaxis2': {'title': f'{y2_name} ({y2_unit})', 'showgrid': False},
+        'xaxis': {'title': {'text': '日期', 'font': THEME['font']}, 'showgrid': True, 'gridcolor': THEME['colors']['grid']},
+        'yaxis': {'title': {'text': f'{y1_name} ({y1_unit})', 'font': THEME['font']}, 'showgrid': True, 'gridcolor': THEME['colors']['grid']},
+        'yaxis2': {'title': {'text': f'{y2_name} ({y2_unit})', 'font': THEME['font']}, 'showgrid': False},
     })
     fig.update_layout(**layout)
     
