@@ -1,53 +1,24 @@
-import pandas as pd
-from sqlalchemy import create_engine
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-import numpy as np
+from common import add_range_selector as _add_range_selector, get_metal_data, pivot_metric as _pivot_metric
 
 # 连接数据库
-engine = create_engine('postgresql://postgres:125123@localhost:5432/commodities_db')
 
 def get_gold_data():
     """读取 GOLD 所有数据"""
-    query = """
-    SELECT as_of_date, metric, value, unit, source
-    FROM clean.observations 
-    WHERE metal = 'GOLD'
-    ORDER BY as_of_date, metric
-    """
-    df = pd.read_sql(query, engine)
-    df['as_of_date'] = pd.to_datetime(df['as_of_date'])
-    return df
+    return get_metal_data('GOLD')
 
 def pivot_metric(df, metric_name):
     """将指定 metric 转为时间序列"""
-    data = df[df['metric'] == metric_name].copy()
-    data = data.sort_values('as_of_date')
-    data = data.drop_duplicates(subset=['as_of_date'], keep='last')
-    data = data.set_index('as_of_date')['value']
-    return data
+    return _pivot_metric(df, metric_name)
 
 def add_range_selector(fig):
     """添加时间范围选择器"""
-    fig.update_xaxes(
-        rangeslider_visible=True,
-        rangeselector=dict(
-            buttons=list([
-                dict(count=1, label="1m", step="month", stepmode="backward"),
-                dict(count=6, label="6m", step="month", stepmode="backward"),
-                dict(count=1, label="1y", step="year", stepmode="backward"),
-                dict(step="all", label="All")
-            ]),
-            bgcolor="rgba(255, 255, 255, 0.8)",
-            activecolor="rgba(100, 149, 237, 0.5)",
-            x=0,
-            y=1.02
-        )
-    )
+    return _add_range_selector(fig)
 
 # 读取数据
 print("正在从数据库读取 GOLD 数据...")
-df = get_gold_data()
+df = get_metal_data('GOLD')
 print(f"读取完成：{len(df)} 条记录")
 
 # 提取各个指标
