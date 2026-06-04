@@ -1,8 +1,7 @@
 import streamlit as st
-import pandas as pd
-from sqlalchemy import create_engine
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+from common import add_range_selector as _add_range_selector, get_metal_data as load_metal_data, pivot_metric as _pivot_metric
 
 # 页面配置
 st.set_page_config(
@@ -15,49 +14,23 @@ st.set_page_config(
 # 数据库连接
 @st.cache_resource
 def get_engine():
-    return create_engine('postgresql://postgres:125123@localhost:5432/commodities_db')
+    raise RuntimeError("Use common.get_metal_data for database access.")
 
-engine = get_engine()
 
 # 数据读取函数
 @st.cache_data(ttl=3600)
 def get_metal_data(metal_name):
     """读取指定金属的所有数据"""
-    query = f"""
-    SELECT as_of_date, metric, value, unit, source
-    FROM clean.observations 
-    WHERE metal = '{metal_name}'
-    ORDER BY as_of_date, metric
-    """
-    df = pd.read_sql(query, engine)
-    df['as_of_date'] = pd.to_datetime(df['as_of_date'])
-    return df
+    return load_metal_data(metal_name)
 
 def pivot_metric(df, metric_name):
     """将指定 metric 转为时间序列"""
-    data = df[df['metric'] == metric_name].copy()
-    data = data.sort_values('as_of_date')
-    data = data.drop_duplicates(subset=['as_of_date'], keep='last')
-    data = data.set_index('as_of_date')['value']
-    return data
+    return _pivot_metric(df, metric_name)
 
 def add_range_selector(fig):
     """添加时间范围选择器"""
-    fig.update_xaxes(
-        rangeslider_visible=True,
-        rangeselector=dict(
-            buttons=list([
-                dict(count=1, label="1m", step="month", stepmode="backward"),
-                dict(count=6, label="6m", step="month", stepmode="backward"),
-                dict(count=1, label="1y", step="year", stepmode="backward"),
-                dict(step="all", label="All")
-            ]),
-            bgcolor="rgba(255, 255, 255, 0.8)",
-            activecolor="rgba(100, 149, 237, 0.5)",
-            x=0,
-            y=1.02
-        )
-    )
+    return _add_range_selector(fig)
+
 
 # ============================================================================
 # GOLD 图表生成函数
