@@ -26,11 +26,13 @@ from urllib.parse import quote_plus
 from dotenv import load_dotenv
 
 load_dotenv()
+database_url = os.getenv("DATABASE_URL")
 user = os.getenv("DB_USER")
 password = os.getenv("DB_PASSWORD")
 host = os.getenv("DB_HOST")
 port = os.getenv("DB_PORT")
 db_name = os.getenv("DB_NAME")
+sslmode = os.getenv("DB_SSLMODE")
 # ================= 配置区 =================
 # 数据库连接配置（可根据需要修改）
 DB_CONFIG = {
@@ -50,15 +52,32 @@ TABLE_CONFIG = {
 
 # ================= 数据库引擎 =================
 def get_db_url():
-    """获取数据库连接 URL"""
+    """Build the PostgreSQL connection URL from deployment secrets."""
+    if database_url:
+        return database_url.replace("postgres://", "postgresql://", 1)
+
+    missing = [key for key, value in DB_CONFIG.items() if not value]
+    if missing:
+        missing_vars = ", ".join(f"DB_{key.upper()}" for key in missing)
+        raise RuntimeError(
+            "Missing database configuration. Set DATABASE_URL or all of: "
+            f"{missing_vars}"
+        )
     # 对密码进行 URL 编码，防止特殊字符导致连接失败
     encoded_password = quote_plus(DB_CONFIG['password']) if DB_CONFIG['password'] else ''
-    return f"postgresql://{DB_CONFIG['user']}:{encoded_password}@{DB_CONFIG['host']}:{DB_CONFIG['port']}/{DB_CONFIG['database']}"
+    encoded_password = quote_plus(DB_CONFIG['password'])
+    url = f"postgresql://{DB_CONFIG['user']}:{encoded_password}@{DB_CONFIG['host']}:{DB_CONFIG['port']}/{DB_CONFIG['database']}"
+    mode = sslmode
+    if not mode and DB_CONFIG["host"] and "neon.tech" in DB_CONFIG["host"]:
+        mode = "require"
+    if mode:
+        url = f"{url}?sslmode={quote_plus(mode)}"
+    return url
 
 def get_engine():
     """获取数据库连接引擎（单例模式）"""
     if not hasattr(get_engine, '_engine'):
-        get_engine._engine = create_engine(get_db_url())
+        get_engine._engine = create_engine(get_db_url(), pool_pre_ping=True)
     return get_engine._engine
 
 

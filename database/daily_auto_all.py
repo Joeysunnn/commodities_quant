@@ -45,7 +45,12 @@ def run_task_safely(task_name, func):
     print('='*70)
     
     try:
-        func()  # 执行任务函数
+        result = func()  # 执行任务函数
+        if result is None or result is False:
+            failure_msg = f"[FAIL] {task_name} did not return data"
+            print(f"\n{failure_msg}")
+            logging.error(failure_msg)
+            return False
         success_msg = f"[OK] {task_name} 执行成功"
         print(f"\n{success_msg}")
         logging.info(success_msg)
@@ -199,5 +204,6 @@ if __name__ == "__main__":
     logging.info(summary_msg)
     
     # 如果所有任务都成功，返回0；否则返回1
-    exit_code = 0 if results['failed'] == 0 else 1
+    allow_partial = os.getenv("ALLOW_PARTIAL_DAILY_UPDATE") == "1"
+    exit_code = 0 if results['failed'] == 0 or (allow_partial and results['success'] > 0) else 1
     sys.exit(exit_code)

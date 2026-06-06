@@ -70,7 +70,10 @@ METALS_CONFIG = {
 
 # 请求头 - 伪装浏览器
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Accept": "application/vnd.ms-excel,application/octet-stream,*/*",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Referer": "https://www.cmegroup.com/clearing/operations-and-deliveries/nymex-delivery-notices.html"
 }
 
 # 短吨到公吨的转换系数

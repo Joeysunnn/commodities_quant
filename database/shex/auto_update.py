@@ -14,6 +14,8 @@ import pandas as pd
 # 添加项目根目录到路径，以便导入 db_utils
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT_DIR)
+RAW_SHEX_DIR = os.path.join(ROOT_DIR, 'rawdata', 'shex')
+sys.path.insert(0, RAW_SHEX_DIR)
 
 # 导入抓取模块
 from grab_api import SHFEAPIFetcher
@@ -222,11 +224,16 @@ def main():
         # 步骤1: 抓取最近3周的数据
         raw_file = fetch_recent_data('temp_weekly_stock_data.csv')
         if not raw_file:
+            return False
+        if not raw_file:
             print("\n[FAIL] 抓取数据失败")
             return
         
         # 步骤2: 清洗数据
         clean_df = clean_recent_data(raw_file, 'temp_clean_observations.csv')
+        if clean_df is None or len(clean_df) == 0:
+            cleanup_temp_files()
+            return False
         if clean_df is None or len(clean_df) == 0:
             print("\n[FAIL] 清洗数据失败")
             cleanup_temp_files()
@@ -251,11 +258,14 @@ def main():
         print("[OK] 自动更新完成！（已同步到数据库）")
         print("=" * 70)
         
+        return clean_df
+
     except Exception as e:
         print(f"\n[FAIL] 发生错误: {e}")
         import traceback
         traceback.print_exc()
         cleanup_temp_files()
+        return False
 
 
 if __name__ == '__main__':

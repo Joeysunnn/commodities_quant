@@ -253,6 +253,7 @@ def main():
             except Exception as e:
                 print(f"[FAIL] Database upload failed: {e}")
                 print("Data has been saved to CSV file")
+                return False
             
             # Print summary
             print(f"\n" + "=" * 60)
@@ -261,10 +262,13 @@ def main():
             print(f"  Latest price: ${df_clean['value'].iloc[-1]:.2f}")
             print(f"  Latest date: {df_clean['as_of_date'].iloc[-1].date()}")
             print("=" * 60)
+            return df_clean
         else:
             print("Failed to clean data")
+            return False
     else:
         print("\nNo new data to fetch. Database is up to date.")
+        return True
 
 
 if __name__ == "__main__":

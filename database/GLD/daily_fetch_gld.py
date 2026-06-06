@@ -13,7 +13,7 @@ import hashlib
 import os
 import sys
 from datetime import datetime, timedelta
-from io import StringIO
+from io import StringIO, BytesIO
 
 # 添加项目根目录到路径
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -31,12 +31,12 @@ def calculate_checksum(data_bytes):
 
 def download_gld_data():
     """下载GLD ETF数据"""
-    url = "https://www.spdrgoldshares.com/assets/dynamic/GLD/GLD_US_archive_EN.csv"
+    url = "https://api.spdrgoldshares.com/api/v1/historical-archive?exchange=NYSE&lang=en&product=gld"
     
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
         "Referer": "https://www.spdrgoldshares.com/usa/historical-data/",
-        "Accept": "text/csv,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+        "Accept": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/csv,*/*"
     }
 
     print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] 开始下载 GLD 数据...")
@@ -79,8 +79,11 @@ def clean_gld_data(raw_data, days_back=30):
     
     # 读取CSV数据
     try:
-        csv_data = raw_data.decode('utf-8')
-        df = pd.read_csv(StringIO(csv_data))
+        if raw_data.startswith(b'PK'):
+            df = pd.read_excel(BytesIO(raw_data), sheet_name='US GLD Historical Archive')
+        else:
+            csv_data = raw_data.decode('latin1')
+            df = pd.read_csv(StringIO(csv_data))
     except Exception as e:
         print(f"读取CSV失败: {e}")
         return None
@@ -89,7 +92,16 @@ def clean_gld_data(raw_data, days_back=30):
     df.columns = df.columns.str.strip()
     
     # 选择并重命名列
-    df_clean = df[['Date', 'Total Net Asset Value Ounces in the Trust as at 4.15 p.m. NYT']].copy()
+    holdings_candidates = [
+        'Total Ounces of Gold in the Trust',
+        'Total Net Asset Value Ounces in the Trust as at 4.15 p.m. NYT',
+    ]
+    holdings_col = next((col for col in holdings_candidates if col in df.columns), None)
+    if holdings_col is None or 'Date' not in df.columns:
+        print(f"GLD columns not recognized: {df.columns.tolist()}")
+        return None
+
+    df_clean = df[['Date', holdings_col]].copy()
     df_clean.columns = ['Date', 'gld_holdings_oz']
     
     # 转换日期列

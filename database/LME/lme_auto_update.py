@@ -123,9 +123,16 @@ class LMEAutoUpdater:
                     "profile.default_content_setting_values.automatic_downloads": 1
                 }
                 chrome_options.add_experimental_option("prefs", prefs)
+
+                chrome_binary = os.getenv("CHROME_BINARY")
+                if chrome_binary:
+                    chrome_options.binary_location = chrome_binary
                 
                 print(f"正在启动Chrome浏览器 (尝试 {attempt + 1}/{retry_count})...")
-                service = Service(ChromeDriverManager().install())
+                if os.getenv("SELENIUM_MANAGER") == "1":
+                    service = Service()
+                else:
+                    service = Service(ChromeDriverManager().install())
                 self.driver = webdriver.Chrome(service=service, options=chrome_options)
                 
                 # 设置页面加载超时
