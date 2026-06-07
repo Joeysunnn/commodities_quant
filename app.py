@@ -12,10 +12,11 @@ Commodity Quant System - Main Entry
 
 import streamlit as st
 from views import dashboard, metal_analysis, backtest
+from views.ui_text import bilingual_sidebar_section, bilingual_sidebar_title
 
 # ===================== 页面配置 =====================
 st.set_page_config(
-    page_title="商品库存量化系统 | Commodity Quant",
+    page_title="Commodity Inventory Quant System",
     page_icon="📊",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -47,6 +48,83 @@ st.markdown("""
         box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         margin: 10px 0;
     }
+
+    .bilingual-title {
+        text-align: center;
+        padding: 0.75rem 0 0.25rem 0;
+    }
+
+    .bilingual-title h1 {
+        color: #1f77b4;
+        font-size: 2.75rem;
+        line-height: 1.15;
+        margin: 0;
+        font-weight: 800;
+    }
+
+    .bilingual-title p {
+        color: #6b7280;
+        font-size: 1rem;
+        margin: 0.35rem 0 0 0;
+    }
+
+    .bilingual-section {
+        margin: 0.35rem 0 0.8rem 0;
+    }
+
+    .bilingual-section h3 {
+        color: #262730;
+        font-size: 1.65rem;
+        line-height: 1.2;
+        margin: 0;
+        font-weight: 750;
+    }
+
+    .bilingual-section p,
+    .bilingual-chart-title p,
+    .bilingual-sidebar-title p {
+        color: #6b7280;
+        font-size: 0.9rem;
+        margin: 0.2rem 0 0 0;
+    }
+
+    .bilingual-chart-title {
+        margin: 0.25rem 0 0.6rem 0;
+    }
+
+    .bilingual-chart-title h4 {
+        color: #262730;
+        font-size: 1.05rem;
+        line-height: 1.25;
+        margin: 0;
+        font-weight: 700;
+    }
+
+    .bilingual-sidebar-title h2 {
+        color: #262730;
+        font-size: 1.55rem;
+        line-height: 1.2;
+        margin: 0.2rem 0 0 0;
+        font-weight: 800;
+    }
+
+    .bilingual-sidebar-section {
+        margin: 0.25rem 0 0.75rem 0;
+    }
+
+    .bilingual-sidebar-section h3 {
+        color: #262730;
+        font-size: 1.15rem;
+        line-height: 1.2;
+        margin: 0;
+        font-weight: 750;
+    }
+
+    .bilingual-sidebar-section p {
+        color: #6b7280;
+        font-size: 0.82rem;
+        margin: 0.15rem 0 0 0;
+    }
     
     /* 隐藏 Streamlit 默认的 hamburger menu 和 footer */
     #MainMenu {visibility: hidden;}
@@ -56,21 +134,20 @@ st.markdown("""
 
 # ===================== 左侧导航栏 =====================
 st.sidebar.image("https://img.icons8.com/color/96/commodity.png", width=80)
-st.sidebar.title("📊 商品库存分析")
-st.sidebar.markdown("**Commodity Inventory Analysis**")
+bilingual_sidebar_title("Commodity Inventory Analysis", "商品库存分析", "📊")
 st.sidebar.markdown("---")
 
 # 导航选项
 PAGES = {
-    "🌍 宏观仪表盘": "dashboard",
-    "🟤 铜 (Copper)": "copper",
-    "🟡 金 (Gold)": "gold",
-    "⚪ 银 (Silver)": "silver",
-    "📈 策略回测": "backtest"
+    "🌍 Macro Dashboard / 宏观仪表盘": "dashboard",
+    "🟤 Copper / 铜": "copper",
+    "🟡 Gold / 金": "gold",
+    "⚪ Silver / 银": "silver",
+    "📈 Strategy Backtest / 策略回测": "backtest"
 }
 
 page = st.sidebar.radio(
-    "选择模块",
+    "Module / 模块",
     options=list(PAGES.keys()),
     index=0
 )
@@ -90,27 +167,27 @@ elif selected_page == "backtest":
     try:
         backtest.show()
     except Exception as e:
-        st.warning("⚠️ 回测模块正在开发中...")
-        st.info(f"错误信息: {e}")
+        st.warning("⚠️ Backtest module is under development. / 回测模块正在开发中")
+        st.info(f"Error details / 错误信息: {e}")
 
 # ===================== 侧边栏底部 =====================
 st.sidebar.markdown("---")
 
 # PDF 报告生成
-st.sidebar.subheader("📄 报告生成")
+bilingual_sidebar_section("Report Builder", "报告生成", "📄")
 report_type = st.sidebar.selectbox(
-    "选择报告类型",
-    ["每日投研日报", "每周市场周报", "月度分析报告"]
+    "Report type / 报告类型",
+    ["Daily Research Note / 每日投研日报", "Weekly Market Report / 每周市场周报", "Monthly Analysis / 月度分析报告"]
 )
 
-if st.sidebar.button("🖨️ 生成报告", use_container_width=True):
-    st.sidebar.info("正在生成报告，请稍候...")
+if st.sidebar.button("🖨️ Generate Report / 生成报告", use_container_width=True):
+    st.sidebar.info("Generating report, please wait... / 正在生成报告，请稍候...")
     # TODO: 调用报告生成函数
-    st.sidebar.warning("报告生成功能开发中...")
+    st.sidebar.warning("Report generation is under development. / 报告生成功能开发中...")
 
 # 数据更新状态
 st.sidebar.markdown("---")
-st.sidebar.caption("📅 数据更新时间")
+st.sidebar.caption("📅 Data Update Time / 数据更新时间")
 st.sidebar.caption("COMEX: 2026-01-06")
 st.sidebar.caption("LME: 2026-01-06")
 st.sidebar.caption("SHFE: 2026-01-03")

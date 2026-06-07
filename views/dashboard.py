@@ -26,6 +26,7 @@ from utils import (
     create_signal_card_html,
     THEME
 )
+from views.ui_text import bilingual_chart_title, bilingual_page_title, bilingual_section
 
 
 def get_signal_display(percentile: float) -> tuple:
@@ -39,15 +40,15 @@ def get_signal_display(percentile: float) -> tuple:
         tuple: (信号文本, 颜色, emoji)
     """
     if percentile <= 0.05:
-        return "强看多 (Strong Buy)", "#00C853", "🟢"
+        return "Strong Buy", "强看多", "#00C853", "🟢"
     elif percentile <= 0.10:
-        return "看多 (Buy)", "#69F0AE", "🟢"
+        return "Buy", "看多", "#69F0AE", "🟢"
     elif percentile >= 0.95:
-        return "强看空 (Strong Sell)", "#D50000", "🔴"
+        return "Strong Sell", "强看空", "#D50000", "🔴"
     elif percentile >= 0.90:
-        return "看空 (Sell)", "#FF5252", "🔴"
+        return "Sell", "看空", "#FF5252", "🔴"
     else:
-        return "中性 (Neutral)", "#9E9E9E", "⚪"
+        return "Neutral", "中性", "#9E9E9E", "⚪"
 
 
 def render_signal_card(metal: str, percentile: float, signal: str, color: str):
@@ -55,12 +56,12 @@ def render_signal_card(metal: str, percentile: float, signal: str, color: str):
     渲染信号卡片
     """
     metal_display = {
-        'COPPER': ('🟤 铜', 'Copper'),
-        'GOLD': ('🟡 金', 'Gold'),
-        'SILVER': ('⚪ 银', 'Silver')
+        'COPPER': ('Copper', '铜', '🟤'),
+        'GOLD': ('Gold', '金', '🟡'),
+        'SILVER': ('Silver', '银', '⚪')
     }.get(metal, (metal, metal))
     
-    signal_text, signal_color, emoji = get_signal_display(percentile)
+    signal_en, signal_zh, signal_color, emoji = get_signal_display(percentile)
     
     # 根据分位数确定背景渐变
     if percentile <= 0.10:
@@ -80,20 +81,22 @@ def render_signal_card(metal: str, percentile: float, signal: str, color: str):
         border-left: 5px solid {signal_color};
         margin: 5px;
     ">
-        <h3 style="margin: 0 0 10px 0; color: #333; font-size: 1.3rem;">
-            {metal_display[0]}
+        <h3 style="margin: 0 0 4px 0; color: #333; font-size: 1.45rem;">
+            {metal_display[2]} {metal_display[0]}
         </h3>
-        <p style="margin: 0; color: #666; font-size: 0.9rem;">{metal_display[1]}</p>
+        <p style="margin: 0; color: #666; font-size: 0.85rem;">{metal_display[1]}</p>
         <h2 style="margin: 15px 0; color: {signal_color}; font-size: 1.5rem;">
-            {emoji} {signal_text}
+            {emoji} {signal_en}
         </h2>
+        <p style="margin: -8px 0 12px 0; color: #666; font-size: 0.85rem;">{signal_zh}</p>
         <div style="
             background: white;
             border-radius: 10px;
             padding: 10px;
             margin-top: 10px;
         ">
-            <p style="margin: 0; color: #666; font-size: 0.85rem;">全球库存分位</p>
+            <p style="margin: 0; color: #333; font-size: 0.95rem; font-weight: 700;">Global Inventory Percentile</p>
+            <p style="margin: 2px 0 0 0; color: #666; font-size: 0.78rem;">全球库存分位</p>
             <p style="margin: 5px 0 0 0; color: {signal_color}; font-size: 1.8rem; font-weight: bold;">
                 {percentile:.1%}
             </p>
@@ -106,29 +109,22 @@ def show():
     """显示仪表盘页面"""
     
     # 页面标题
-    st.markdown("""
-    <h1 style="text-align: center; color: #1f77b4; margin-bottom: 0;">
-        🌍 宏观库存仪表盘
-    </h1>
-    <p style="text-align: center; color: #666; font-size: 1.1rem; margin-top: 5px;">
-        Macro Inventory Dashboard
-    </p>
-    """, unsafe_allow_html=True)
+    bilingual_page_title("Macro Inventory Dashboard", "宏观库存仪表盘", "🌍")
     
     st.markdown("---")
     
     # ===================== 加载数据 =====================
-    with st.spinner("正在加载数据..."):
+    with st.spinner("Loading data... / 正在加载数据..."):
         try:
             signals = get_dashboard_signals()
             heatmap_data = get_heatmap_data()
         except Exception as e:
-            st.error(f"数据加载失败: {e}")
+            st.error(f"Data loading failed / 数据加载失败: {e}")
             return
     
     # ===================== 第一部分：多空信号灯 =====================
-    st.subheader("🚦 多空信号灯 (Bull/Bear Signals)")
-    st.caption("基于全球库存3年滚动分位数 | Based on 3-Year Rolling Percentile")
+    bilingual_section("Bull/Bear Signals", "多空信号灯", "🚦")
+    st.caption("Based on 3-Year Rolling Percentile / 基于全球库存3年滚动分位数")
     
     col1, col2, col3 = st.columns(3)
     
@@ -137,7 +133,7 @@ def show():
     
     for metal, col in zip(metals, cols):
         with col:
-            info = signals.get(metal, {'percentile': 0.5, 'signal': '数据缺失', 'color': 'gray'})
+            info = signals.get(metal, {'percentile': 0.5, 'signal': 'Missing Data', 'color': 'gray'})
             render_signal_card(
                 metal=metal,
                 percentile=info['percentile'],
@@ -148,24 +144,24 @@ def show():
     st.markdown("<br>", unsafe_allow_html=True)
     
     # ===================== 第二部分：信号解读 =====================
-    with st.expander("📖 信号解读说明", expanded=False):
+    with st.expander("📖 Signal Guide / 信号解读说明", expanded=False):
         st.markdown("""
-        | 信号 | 分位数范围 | 含义 | 操作建议 |
+        | Signal / 信号 | Percentile Range / 分位数范围 | Meaning / 含义 | Suggested Action / 操作建议 |
         |------|-----------|------|----------|
-        | 🟢 **强看多** | < 5% | 库存处于历史极低位，供应紧张 | 考虑做多 |
-        | 🟢 看多 | 5% - 10% | 库存偏低 | 偏多思路 |
-        | ⚪ 中性 | 10% - 90% | 库存正常区间 | 观望或根据趋势操作 |
-        | 🔴 看空 | 90% - 95% | 库存偏高 | 偏空思路 |
-        | 🔴 **强看空** | > 95% | 库存处于历史极高位，供应过剩 | 考虑做空 |
+        | 🟢 **Strong Buy / 强看多** | < 5% | Inventory is extremely low and supply is tight / 库存处于历史极低位，供应紧张 | Consider long exposure / 考虑做多 |
+        | 🟢 Buy / 看多 | 5% - 10% | Inventory is low / 库存偏低 | Bullish bias / 偏多思路 |
+        | ⚪ Neutral / 中性 | 10% - 90% | Inventory is in a normal range / 库存正常区间 | Watch or trade with trend / 观望或根据趋势操作 |
+        | 🔴 Sell / 看空 | 90% - 95% | Inventory is high / 库存偏高 | Bearish bias / 偏空思路 |
+        | 🔴 **Strong Sell / 强看空** | > 95% | Inventory is extremely high and supply is abundant / 库存处于历史极高位，供应过剩 | Consider short exposure / 考虑做空 |
         
-        > ⚠️ **注意**：此信号仅基于库存分位数，实际交易需结合价格趋势、基本面等多因素分析。
+        > ⚠️ **Note / 注意**: These signals only use inventory percentiles. Actual trading decisions should also consider price trend, fundamentals, and other factors.
         """)
     
     st.markdown("---")
     
     # ===================== 第三部分：热力图 =====================
-    st.subheader("🔥 全球库存压力热力图 (Inventory Pressure Heatmap)")
-    st.caption("行 = 金属 | 列 = 交易所/数据源 | 颜色 = 分位数 (绿低红高)")
+    bilingual_section("Inventory Pressure Heatmap", "全球库存压力热力图", "🔥")
+    st.caption("Rows = Metals / 行 = 金属 | Columns = Exchanges/Data Sources / 列 = 交易所/数据源 | Color = Percentile / 颜色 = 分位数")
     
     if not heatmap_data.empty:
         fig_heatmap = plot_heatmap(
@@ -175,17 +171,17 @@ def show():
         )
         st.plotly_chart(fig_heatmap, use_container_width=True)
     else:
-        st.info("暂无热力图数据")
+        st.info("No heatmap data yet. / 暂无热力图数据")
     
     st.markdown("---")
     
     # ===================== 第四部分：迷你趋势图 =====================
-    st.subheader("📈 近期分位走势 (Recent Percentile Trends)")
+    bilingual_section("Recent Percentile Trends", "近期分位走势", "📈")
     
     col_c, col_g, col_s = st.columns(3)
     
     with col_c:
-        st.markdown("##### 🟤 铜 (Copper)")
+        bilingual_chart_title("", "Copper", "铜", "🟤")
         try:
             copper_data = calculate_global_percentile('COPPER')
             if not copper_data.empty:
@@ -194,12 +190,12 @@ def show():
                 fig = plot_percentile_trend(mini_data, title="", metal='COPPER', height=200)
                 st.plotly_chart(fig, use_container_width=True)
             else:
-                st.info("暂无数据")
+                st.info("No data yet. / 暂无数据")
         except Exception as e:
-            st.warning(f"加载失败: {e}")
+            st.warning(f"Load failed / 加载失败: {e}")
     
     with col_g:
-        st.markdown("##### 🟡 金 (Gold)")
+        bilingual_chart_title("", "Gold", "金", "🟡")
         try:
             gold_data = calculate_global_percentile('GOLD')
             if not gold_data.empty:
@@ -207,12 +203,12 @@ def show():
                 fig = plot_percentile_trend(mini_data, title="", metal='GOLD', height=200)
                 st.plotly_chart(fig, use_container_width=True)
             else:
-                st.info("暂无数据")
+                st.info("No data yet. / 暂无数据")
         except Exception as e:
-            st.warning(f"加载失败: {e}")
+            st.warning(f"Load failed / 加载失败: {e}")
     
     with col_s:
-        st.markdown("##### ⚪ 银 (Silver)")
+        bilingual_chart_title("", "Silver", "银", "⚪")
         try:
             silver_data = calculate_global_percentile('SILVER')
             if not silver_data.empty:
@@ -220,52 +216,52 @@ def show():
                 fig = plot_percentile_trend(mini_data, title="", metal='SILVER', height=200)
                 st.plotly_chart(fig, use_container_width=True)
             else:
-                st.info("暂无数据")
+                st.info("No data yet. / 暂无数据")
         except Exception as e:
-            st.warning(f"加载失败: {e}")
+            st.warning(f"Load failed / 加载失败: {e}")
     
     st.markdown("---")
     
     # ===================== 第五部分：快速导航 =====================
-    st.subheader("🔗 快速导航 (Quick Links)")
+    bilingual_section("Quick Links", "快速导航", "🔗")
     
     nav_col1, nav_col2, nav_col3, nav_col4 = st.columns(4)
     
     with nav_col1:
         st.markdown("""
         <div style="background: #EFEBE9; border-radius: 10px; padding: 15px; text-align: center;">
-            <h4 style="margin: 0;">🟤 铜分析</h4>
-            <p style="color: #666; font-size: 0.9rem;">Copper Analysis</p>
+            <h4 style="margin: 0;">🟤 Copper Analysis</h4>
+            <p style="color: #666; font-size: 0.85rem;">铜分析</p>
         </div>
         """, unsafe_allow_html=True)
     
     with nav_col2:
         st.markdown("""
         <div style="background: #FFF8E1; border-radius: 10px; padding: 15px; text-align: center;">
-            <h4 style="margin: 0;">🟡 金分析</h4>
-            <p style="color: #666; font-size: 0.9rem;">Gold Analysis</p>
+            <h4 style="margin: 0;">🟡 Gold Analysis</h4>
+            <p style="color: #666; font-size: 0.85rem;">金分析</p>
         </div>
         """, unsafe_allow_html=True)
     
     with nav_col3:
         st.markdown("""
         <div style="background: #ECEFF1; border-radius: 10px; padding: 15px; text-align: center;">
-            <h4 style="margin: 0;">⚪ 银分析</h4>
-            <p style="color: #666; font-size: 0.9rem;">Silver Analysis</p>
+            <h4 style="margin: 0;">⚪ Silver Analysis</h4>
+            <p style="color: #666; font-size: 0.85rem;">银分析</p>
         </div>
         """, unsafe_allow_html=True)
     
     with nav_col4:
         st.markdown("""
         <div style="background: #E3F2FD; border-radius: 10px; padding: 15px; text-align: center;">
-            <h4 style="margin: 0;">📈 策略回测</h4>
-            <p style="color: #666; font-size: 0.9rem;">Backtest (开发中)</p>
+            <h4 style="margin: 0;">📈 Strategy Backtest</h4>
+            <p style="color: #666; font-size: 0.85rem;">策略回测（开发中）</p>
         </div>
         """, unsafe_allow_html=True)
     
     # 底部说明
     st.markdown("---")
     st.caption("""
-    📊 **数据说明**：分位数基于2021年至今的数据，使用3年滚动窗口计算。
-    数据来源包括 LME、COMEX、SHFE、LBMA、GLD ETF、SLV ETF。
+    📊 **Data Notes / 数据说明**: Percentiles are calculated from a 3-year rolling window using data since 2021.
+    Sources include LME, COMEX, SHFE, LBMA, GLD ETF, and SLV ETF.
     """)
